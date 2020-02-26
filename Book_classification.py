@@ -49,7 +49,7 @@
 ##
 ## You have to put all of them in one folder :
 
-work_dir='Desktop/Books/'
+work_dir='C:/Users/Rajasree/Book_project/pre_trained_models/'
 
 
             #######################################################
@@ -106,11 +106,11 @@ from keras.layers.normalization import BatchNormalization
 from keras.layers.convolutional import Conv2D, MaxPooling2D
 from keras.layers import Activation, GlobalAveragePooling2D
 from keras.models import Sequential, Model, load_model, model_from_json
-from keras_applications.inception_v3 import InceptionV3, preprocess_input
+from keras.applications.inception_v3 import InceptionV3, preprocess_input
 
 
 # To use pytesseract with Windows OS (Filepath to tesseract-data)
-pytesseract.pytesseract.tesseract_cmd='C:/Program Files (x86)/Tesseract-OCR/tesseract'
+pytesseract.pytesseract.tesseract_cmd=r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 # To use pytesseract with Mac OS type the command pip install pytesseract on your terminal
 
