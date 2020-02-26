@@ -16,7 +16,7 @@ def upload_file1():
       filename = "static/"+secure_filename(f.filename)
       f.save(filename)
     #   os.remove(filename)
-      return 'file uploaded successfully<br><img src='+filename+'>'
+      return render_template('predict.html',fn = filename)
 		
 if __name__ == '__main__':
    app.run()
