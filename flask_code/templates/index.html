@@ -14,7 +14,7 @@
             rgba(205, 206, 192, 0.52),
             rgba(22, 6, 18, 0.73)
           ),
-          url(g.jpg);
+          url("/static/g.jpg");
         background-size: cover;
         text-align: center;
       }
@@ -36,6 +36,9 @@
       <input type="file" name="file" />
       <input type="submit" />
     </form>
+    <p>
+      {{ path }}
+    </p>
     <p id="credits">
       Photo by Giulia Bertelli on Unsplash
     </p>

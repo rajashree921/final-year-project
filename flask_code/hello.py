@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import cv2
+# import cv2
 import os
 from werkzeug.utils import secure_filename
 
@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def upload_file():
-   return render_template('index.html')
+   return render_template('index.html', path = app.instance_path)
 	
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file1():
