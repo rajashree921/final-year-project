@@ -1,21 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Demo</title>
     <style>
-        h1{
-            text-align: center;
-        }
+      html {
+        height: 100%;
+      }
+      body {
+        background-image: linear-gradient(
+            to bottom,
+            rgba(205, 206, 192, 0.52),
+            rgba(22, 6, 18, 0.73)
+          ),
+          url(g.jpg);
+        background-size: cover;
+        text-align: center;
+      }
+      #credits {
+        color: white;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Judge a Book by its Cover!</h1>
-    <form action = "http://localhost:5000/uploader" method = "POST" 
-         enctype = "multipart/form-data">
-         <input type = "file" name = "file" />
-         <input type = "submit"/>
-      </form>
-</body>
+    <form
+      action="http://localhost:5000/uploader"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="file" />
+      <input type="submit" />
+    </form>
+    <p id="credits">
+      Photo by Giulia Bertelli on Unsplash
+    </p>
+  </body>
 </html>
