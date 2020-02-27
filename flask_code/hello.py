@@ -41,14 +41,15 @@ def shutdown():
     shutdown_server()
     return 'Server shutting down...'  
 
-IMAGE_LABELS = ['Headphone', 'Mouse', 'Camera', 'Smartphone',
-                'Glasses', 'Shoes', 'Watch', 'Laptop']
+IMAGE_LABELS = [ 'Shoes', 'Watch', 'Laptop']
 
 def generate_barplot(predictions):
     """ Generates script and `div` element of bar plot of predictions using
     Bokeh
     """
-    plot = figure(y_range=IMAGE_LABELS, plot_height=300)
+    plot = figure(y_range=IMAGE_LABELS, plot_height=100)
+    plot.xgrid.grid_line_color = None
+    plot.ygrid.grid_line_color = None
     plot.hbar(y=IMAGE_LABELS, right=predictions, height=0.6)
     plot.yaxis.major_label_orientation = pi / 2.
     plot.sizing_mode = 'scale_width'
@@ -56,7 +57,7 @@ def generate_barplot(predictions):
 
 @app.route('/predict1')
 def predict():
-    predictions = [0.1, 0.5, 0.3, 0.75, 0.9, 0.5, 0.1, 0.0]
+    predictions = [0.1, 0.5, 0.3]
     script, div = generate_barplot(predictions)
     return render_template(
         'predict1.html',

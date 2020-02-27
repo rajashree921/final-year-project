@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="static/icon.ico">
+    <link rel="icon" type="image/x-icon" href="static/icon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
+      integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47"
+      crossorigin="anonymous"
+    />
     <title>Project Demo</title>
     <style>
       html {
@@ -22,10 +28,23 @@
       #credits {
         font-family: sans-serif;
         font-variant: small-caps;
-        color: white;
+        color: darkgray;
         position: fixed;
         bottom: 0;
         right: 0;
+      }
+      .pure-button {
+        border: 2px solid white;
+        border-radius: 20px;
+        background-color: darkcyan;
+        color: white;
+        margin: 15px;
+      }
+      form {
+        background-color: rgba(0, 0, 0, 0.5);
+        margin-left: 30%;
+        margin-right: 30%;
+        color: white;
       }
     </style>
   </head>
@@ -35,12 +54,48 @@
       action="http://localhost:5000/uploader"
       method="POST"
       enctype="multipart/form-data"
+      class="pure-form"
     >
-      <input type="file" name="file" />
-      <input type="submit" />
+      <input
+        type="file"
+        name="file"
+        id="file"
+        onchange="readURL(this);"
+      />
+      <br />
+      <br />
+      <img id="blah" src="#" alt="<image preview here>" /><br />
+      <button type="submit" class="pure-button">Let's Go!</button>
     </form>
     <p id="credits">
       Photo by Giulia Bertelli on Unsplash
     </p>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("form").submit(function() {
+          var fileName = $("#file").val();
+          if (fileName) {
+            // returns true if the string is not empty
+          } else {
+            // no file was selected
+            alert("Please select an image");
+            return false;
+          }
+        });
+      });
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $("#blah")
+              .attr("src", e.target.result)
+              .width(400)
+              .height(550);
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+    </script>
   </body>
 </html>
