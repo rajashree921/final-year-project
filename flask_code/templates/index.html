@@ -162,7 +162,7 @@
       <div></div>
     </div> -->
     <form
-      action="http://localhost:5000/uploader"
+      action="http://localhost:5000/upload"
       method="POST"
       enctype="multipart/form-data"
       class="pure-form"
@@ -170,7 +170,7 @@
       <input type="file" name="file" id="file" onchange="readURL(this);" />
       <br />
       <br />
-      <img id="blah" src="#" alt="<image preview here>" /><br />
+      <img id="preview" src="#" alt="<image preview here>" /><br />
       <button type="submit" class="pure-button">Let's Go!</button>
     </form>
     <p id="credits">
@@ -180,11 +180,13 @@
     <script>
       $(document).ready(function() {
         $("form").submit(function() {
-          $("#loader").css("display", "inline-block");
           var fileName = $("#file").val();
           if (fileName) {
             // returns true if the string is not empty
-            return false;
+            /*check for valid image type*/
+            $("#loader").show();
+            return true;
+            // return false;
           } else {
             // no file was selected
             alert("Please select an image");
@@ -196,7 +198,7 @@
         if (input.files && input.files[0]) {
           var reader = new FileReader();
           reader.onload = function(e) {
-            $("#blah")
+            $("#preview")
               .attr("src", e.target.result)
               .width(300)
               .height(400);

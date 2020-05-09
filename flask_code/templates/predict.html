@@ -7,6 +7,8 @@
   </head>
   <body>
     File uploaded successfully<br />
-    <img src= "{{ fn }}" />
+    <img src= "{{ fn }}" height="400" width="300"/>
+    <h2>Genre Prediction is:</h2><br/>
+    <div class="result_table">{{ result_table | safe}}</div>
   </body>
 </html>
