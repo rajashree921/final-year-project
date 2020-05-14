@@ -21,7 +21,7 @@ from keras.backend import clear_session
 from keras.models import Model, load_model, model_from_json
 from keras.applications.inception_v3 import InceptionV3, preprocess_input
 import re
-import string
+import string, time
 
 pytesseract.pytesseract.tesseract_cmd=r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 work_dir='C:/Users/Rajasree/Code/Final-Year-Project/Book_project/pre_trained_models/'
@@ -376,6 +376,7 @@ def predict():
     f = request.files['file']
     filename = "static/uploaded/"+secure_filename(f.filename)
     f.save(filename)
+    start = time.time()
     clear_session()
     new_inception = load_cnn()
     pca_pre_svm, clf_SVM_new_inception = load_svm()
@@ -390,7 +391,9 @@ def predict():
                             clf_SVM_new_inception = clf_SVM_new_inception,
                             pca = pca_pre_svm
                              )
-    # os.remove(filename)
+    end = time.time()
+    print("Time taken: {}".format(end-start))                         
+    os.remove(filename)
     return render_template('predict.html',fn = filename, result_table = result_table)
 
 from flask import request
