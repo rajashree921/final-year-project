@@ -3,12 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="/static/css/bootstrap.min.css"
+    />
+    <script src="/static/js/jquery.min.js"></script>
     <title>Prediction</title>
+    <style>
+      body {
+        background-image: url("/static/images/predict (3).jpg");
+        background-size: cover;
+        font-family: serif;
+      }
+      .h1 {
+        /* font-family: "monotype corsiva"; */
+        text-shadow: 2px 2px white;
+        text-align: center;
+        text-decoration: underline;
+        font-size: xxx-large;
+      }
+      .btn {
+        border-radius: 20px;
+        background-color: darkcyan;
+        color: white;
+        margin: 15px;
+      }
+      .btn:hover{
+        border: 2px solid white;
+      }
+      #credits {
+        font-family: sans-serif;
+        font-variant: small-caps;
+        color: darkslategray;
+        position: fixed;
+        bottom: 0;
+        right: 10px;
+      }
+    </style>
   </head>
   <body>
-    File uploaded successfully<br />
-    <img src= "{{ fn }}" height="400" width="300"/>
-    <h2>Genre Prediction is:</h2><br/>
-    <div class="result_table">{{ result_table | safe}}</div>
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-12">
+          <h2 style="text-decoration: underline;">Results</h2>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-md">
+          <div class="imgc">
+            <img class="float-right" src="{{ img }}" height="400" width="300" />
+          </div>
+        </div>
+        <div class="col-md align-content-center">
+          {% if text %}
+          <div class="result_text">
+            <h3>Text Detected:</h3>
+            <p>{{ text }}</p>
+          </div>
+          <br />
+          {% endif %}
+          <div class="result_table">
+            <h3>Genre Prediction is:</h3>
+            {{ result_table | safe}}
+          </div>
+          <a role="button" class="btn btn-info" href="/">Try Another</a>
+        </div>
+      </div>
+    </div>
+    <p id="credits">
+      Photo by Jess Bailey from Pexels
+    </p>
+    <script>
+      $(document).ready(function () {
+        $("table").addClass("table table-striped table-borderless");
+        $("thead").addClass("thead-dark");
+      });
+    </script>
   </body>
 </html>

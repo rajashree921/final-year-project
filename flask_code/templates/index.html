@@ -3,13 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="static/icon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
-      integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47"
-      crossorigin="anonymous"
-    />
+    <link rel="icon" type="image/x-icon" href="static/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <script src="/static/js/jquery.min.js"></script>
     <title>Project Demo</title>
     <style>
       html {
@@ -19,122 +15,38 @@
         background-image: linear-gradient(
             to bottom,
             rgba(205, 206, 192, 0.52),
-            rgba(22, 6, 18, 0.73)
+            rgba(22, 6, 18, 0.35)
           ),
-          url("/static/g.jpg");
+          url("/static/images/index.jpg");
         background-size: cover;
         text-align: center;
+        font-family: serif;
+      }
+      .h1 {
+        /* font-family: "monotype corsiva"; */
+        text-shadow: 2px 2px white;
+        text-align: center;
+        text-decoration: underline;
+        font-size: xxx-large;
       }
       #credits {
         font-family: sans-serif;
         font-variant: small-caps;
-        color: darkgray;
+        color: black;
         position: fixed;
         bottom: 0;
-        right: 0;
+        right: 10px;
       }
-      .pure-button {
-        border: 2px solid white;
-        border-radius: 20px;
-        background-color: darkcyan;
-        color: white;
-        margin: 15px;
-      }
-      form {
+      #main {
         background-color: rgba(0, 0, 0, 0.5);
         margin-left: 30%;
         margin-right: 30%;
         color: white;
       }
-      /* .lds-default {
-        display: inline-block;
-        position: relative;
-        width: 80px;
-        height: 80px;
-      }
-      .lds-default div {
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        background: #fff;
-        border-radius: 50%;
-        animation: lds-default 1.2s linear infinite;
-      }
-      .lds-default div:nth-child(1) {
-        animation-delay: 0s;
-        top: 37px;
-        left: 66px;
-      }
-      .lds-default div:nth-child(2) {
-        animation-delay: -0.1s;
-        top: 22px;
-        left: 62px;
-      }
-      .lds-default div:nth-child(3) {
-        animation-delay: -0.2s;
-        top: 11px;
-        left: 52px;
-      }
-      .lds-default div:nth-child(4) {
-        animation-delay: -0.3s;
-        top: 7px;
-        left: 37px;
-      }
-      .lds-default div:nth-child(5) {
-        animation-delay: -0.4s;
-        top: 11px;
-        left: 22px;
-      }
-      .lds-default div:nth-child(6) {
-        animation-delay: -0.5s;
-        top: 22px;
-        left: 11px;
-      }
-      .lds-default div:nth-child(7) {
-        animation-delay: -0.6s;
-        top: 37px;
-        left: 7px;
-      }
-      .lds-default div:nth-child(8) {
-        animation-delay: -0.7s;
-        top: 52px;
-        left: 11px;
-      }
-      .lds-default div:nth-child(9) {
-        animation-delay: -0.8s;
-        top: 62px;
-        left: 22px;
-      }
-      .lds-default div:nth-child(10) {
-        animation-delay: -0.9s;
-        top: 66px;
-        left: 37px;
-      }
-      .lds-default div:nth-child(11) {
-        animation-delay: -1s;
-        top: 62px;
-        left: 52px;
-      }
-      .lds-default div:nth-child(12) {
-        animation-delay: -1.1s;
-        top: 52px;
-        left: 62px;
-      }
-      @keyframes lds-default {
-        0%,
-        20%,
-        80%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.5);
-        }
-      } */
       #loader {
         display: none;
-        background: rgba(0, 0, 0, 0.5) url("static/load1.gif")
-          no-repeat 50% 50%;
+        background: rgba(0, 0, 0, 0.5) url("static/images/load.gif") no-repeat
+          50% 50%;
         width: 100%;
         height: 100%;
         position: fixed;
@@ -142,68 +54,75 @@
         left: 0;
         z-index: 999;
       }
+      .btn {
+        border-radius: 20px;
+        background-color: darkcyan;
+        color: white;
+        margin: 15px;
+      }
+      .btn:hover {
+        border: 2px solid white;
+      }
     </style>
   </head>
   <body>
     <h1>Judge a Book by its Cover!</h1>
     <div id="loader"></div>
-    <!-- <div class="lds-default">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div> -->
-    <form
-      action="http://localhost:5000/predict"
-      method="POST"
-      enctype="multipart/form-data"
-      class="pure-form"
-    >
-      <input type="file" name="file" id="file" onchange="readURL(this);" />
+    <div id="main">
       <br />
-      <br />
-      <img id="preview" src="#" alt="<image preview here>" /><br />
-      <button type="submit" class="pure-button">Let's Go!</button>
-    </form>
+      <form action="/predict" method="POST" enctype="multipart/form-data">
+        <input
+          type="file"
+          name="file"
+          id="file"
+          accept="image/*"
+          onchange="readURL(this);"
+        />
+        <br />
+        <br />
+        <img id="preview" src="#" alt="<image preview here>" /><br />
+        <button type="submit" class="btn btn-info">Let's Go!</button>
+      </form>
+    </div>
     <p id="credits">
       Photo by Giulia Bertelli on Unsplash
     </p>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
-      $(document).ready(function() {
-        $("form").submit(function() {
+      $(document).ready(function () {
+        $("form").submit(function (e) {
           var fileName = $("#file").val();
           if (fileName) {
             // returns true if the string is not empty
             /*check for valid image type*/
             $("#loader").show();
+            console.log("ready to submit");
             return true;
             // return false;
           } else {
             // no file was selected
-            alert("Please select an image");
-            return false;
+            console.log("no file was selected");
+            alert("Please select an image file");
+            $("#file").val("");
+            e.preventDefault();
           }
         });
       });
       function readURL(input) {
         if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            $("#preview")
-              .attr("src", e.target.result)
-              .width(300)
-              .height(400);
+          var ext = input.files[0].name
+            .substring(input.files[0].name.lastIndexOf(".") + 1)
+            .toLowerCase();
+          console.log(ext);
+          if((ext == 'jpg') || (ext == 'png') || (ext == 'jpeg')){
+            var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#preview").attr("src", e.target.result).width(300).height(400);
           };
           reader.readAsDataURL(input.files[0]);
+          }
+          else{
+            alert("Please select an image file");
+          }
         }
       }
     </script>
