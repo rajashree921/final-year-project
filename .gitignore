@@ -1,4 +1,8 @@
 *.jpg
-*.ipynb_checkpoints
-*.vscode
+.ipynb_checkpoints
+*.ipynb
+.vscode
+*.txt
 pre_trained_models
+hello1.py
+*.csv
